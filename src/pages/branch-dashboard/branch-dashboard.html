@@ -1,0 +1,78 @@
+<ion-menu [content]="mycontent" class="tertiary-bg-color" side="left" type="overlay">
+    <ion-list class="margin-top-20-px" class="tertiary-bg-color">
+        <button ion-item (click)="ViewTutorial()" class="fifth-text-color secondary-bg-color">
+            <ion-icon name="ios-book" style="zoom:1;"></ion-icon> Tutorials
+        </button>
+        <button ion-item (click)="Logout()" class="fifth-text-color secondary-bg-color">
+            <ion-icon name="md-arrow-round-back" style="zoom:1;"></ion-icon> Logout
+        </button>
+    </ion-list>
+</ion-menu>
+
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button ion-button clear icon-only class="float-left fifth-text-color" (click)="ToggleMenu()">
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <button (click)="ViewMoreOption($event)" ion-button clear icon-only class="float-right fifth-text-color">
+            <ion-icon name="more"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding #mycontent class="tertiary-bg-color">
+    <agm-map *ngIf="isActiveView" [latitude]="mapView.lat" [longitude]="mapView.long" [zoom]="16" (mapClick)="MovePoint($event)" (centerChange)="TrackMovement($event)">
+        <agm-marker [latitude]="myLocation.latitude" [longitude]="myLocation.longitude">
+          <agm-info-window [isOpen]="true">
+            <strong style="color:#808080">My Location</strong>
+          </agm-info-window>
+        </agm-marker>
+        <div *ngIf="isAcceptedView">
+            <agm-marker *ngFor="let item of acceptedLocation" [latitude]="item.Location.latitude" [longitude]="item.Location.longitude" iconUrl="assets/icon/location.svg">
+                <agm-info-window [isOpen]="false">
+                    <strong class="sixth-text-color">{{item.Owner.Firstname}} {{item.Owner.Lastname}}</strong>
+                    <ion-list>
+                        <ion-row>
+                            <ion-col col-12>
+                                <strong class="sixth-text-color">{{item.Owner.ContactNumber}}</strong>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row *ngFor="let order of item.OrderedItems">
+                            <ion-col col-6 class="sixth-text-color">{{order.Item.Name}}</ion-col>
+                            <ion-col col-3 class="sixth-text-color">{{order.Quantity}}</ion-col>
+                            <ion-col col-3 class="sixth-text-color">{{order.Item.Price *order.Quantity}}</ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col col-12 class="sixth-text-color">Bill: {{item.TotalBill}}</ion-col>
+                        </ion-row>
+                    </ion-list>
+                    <button (click)="PromptDeliveryForm(item)" ion-button class="sixth-text-color secondary-bg-color border-radius-10-px float-left">Delivered</button>
+                    <button (click)="Cancel(item)" ion-button class="sixth-text-color secondary-bg-color border-radius-10-px float-left">Cancel</button>
+                </agm-info-window>
+            </agm-marker>
+        </div>
+        <div *ngIf="!isAcceptedView">
+          <agm-marker *ngFor="let item of customersOnQueue" [latitude]="item.Location.latitude" [longitude]="item.Location.longitude" iconUrl="assets/icon/order.svg">
+            <agm-info-window [isOpen]="false">
+              <strong class="sixth-text-color">{{item.Owner.Firstname}} {{item.Owner.Lastname}}</strong>
+              <ion-list>
+                  <ion-row>
+                    <ion-col col-12>
+                        <strong class="sixth-text-color">{{item.Owner.ContactNumber}}</strong>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row *ngFor="let order of item.OrderedItems">
+                      <ion-col col-6 class="sixth-text-color">{{order.Item.Name}}</ion-col>
+                      <ion-col col-3 class="sixth-text-color">{{order.Quantity}}</ion-col>
+                      <ion-col col-3 class="sixth-text-color">{{order.Quantity * order.Item.Price}}</ion-col>
+                  </ion-row>
+                  <ion-row>
+                      <ion-col col-12 class="sixth-text-color">Bill: {{item.TotalBill}}</ion-col>
+                  </ion-row>
+              </ion-list>
+              <button (click)="Accept(item)" ion-item class="sixth-text-color secondary-bg-color border-radius-10-px float-left">Accept</button>
+            </agm-info-window>
+          </agm-marker>
+        </div>
+    </agm-map>
+</ion-content>

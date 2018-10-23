@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar hideBackButton="true" class="padding-top-20px">
+    <button ion-button clear icon-only class="fifth-text-color" (click)="Close()">
+      <ion-icon name="md-close-circle"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-slides>
+      <ion-slide>
+          <p class="fifth-text-color"><ion-icon name="ios-arrow-dropleft-outline"></ion-icon> Swipe to Next Page</p>
+          <ion-input type="text" placeholder="Email Address" maxLength="30" style="width:100%; margin-bottom:5px;" [(ngModel)]="userModel.EmailAddress" class="background-color-transparent sixth-text-color border-line-1px-secondary border-radius-10-px float-left"></ion-input>
+          <p class="sixth-text-color clear" style="font-size:10px; text-align:right;">{{userModel.EmailAddress.length}}/30</p>
+          <ion-input type="password" maxLength="30" placeholder="Password" style="width:100%; margin-bottom:5px;" [(ngModel)]="userModel.Password" class="background-color-transparent sixth-text-color border-line-1px-secondary border-radius-10-px"></ion-input>
+          <p class="sixth-text-color" style="font-size:10px; text-align:right; ">{{userModel.Password.length}}/30</p>
+          <ion-input type="password" maxLength="30" placeholder="Confirm Password" style="width:100%; margin-bottom:5px;" [(ngModel)]="userModel.Repassword" class="background-color-transparent sixth-text-color border-line-1px-secondary border-radius-10-px"></ion-input>
+          <p class="sixth-text-color" style="font-size:10px; text-align:right; ">{{userModel.Repassword.length}}/30</p>
+      </ion-slide>
+      <ion-slide>
+          <p class="fifth-text-color"><ion-icon name="ios-arrow-dropleft-outline"></ion-icon> Swipe to Next Page</p>
+          <ion-input type="text" maxLength="30" placeholder="Firstname" style="width:100%; margin-bottom:5px;" [(ngModel)]="userModel.Firstname" class="background-color-transparent sixth-text-color border-line-1px-secondary border-radius-10-px"></ion-input>
+          <p class="sixth-text-color" style="font-size:10px; text-align:right; ">{{userModel.Firstname.length}}/30</p>
+          <ion-input type="text" maxLength="30" placeholder="Middle Name" style="width:100%; margin-bottom:5px;" [(ngModel)]="userModel.Middlename" class="background-color-transparent sixth-text-color border-line-1px-secondary border-radius-10-px"></ion-input>
+          <p class="sixth-text-color" style="font-size:10px; text-align:right; ">{{userModel.Middlename.length}}/30</p>
+          <ion-input type="text" maxLength="30" placeholder="Lastname" style="width:100%; margin-bottom:5px;" [(ngModel)]="userModel.Lastname" class="background-color-transparent sixth-text-color border-line-1px-secondary border-radius-10-px"></ion-input>      
+          <p class="sixth-text-color" style="font-size:10px; text-align:right; ">{{userModel.Lastname.length}}/30</p>
+      </ion-slide>
+      <ion-slide>
+          <ion-input type="text" placeholder="Contact #" maxLength="11" style="width:100%; margin-bottom:5px;" [(ngModel)]="userModel.ContactNumber" class="background-color-transparent sixth-text-color border-line-1px-secondary border-radius-10-px"></ion-input>
+          <p class="sixth-text-color" style="font-size:10px; text-align:right; ">{{userModel.ContactNumber.length}}/11</p>
+          <ion-textarea [(ngModel)]="userModel.Address" maxLength="100" class="border-line-1px-secondary sixth-text-color" maxlength="150" style="border-radius:5px;resize: none;" placeholder="Address"></ion-textarea>
+          <p class="sixth-text-color" style="font-size:10px; text-align:right; ">{{userModel.Address.length}}/100</p>
+          <button (click)="SignupOnClick()" ion-button style="width:100%;" class="secondary-bg-color fifth-text-color border-radius-5-px">Sign up</button>
+      </ion-slide>
+    </ion-slides>
+
+</ion-content>

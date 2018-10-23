@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button ion-button clear icon-only class="float-left fifth-text-color" (click)="Close()">
+            <ion-icon name="md-close-circle"></ion-icon>
+        </button>
+        <p class="fifth-text-color float-left" style="margin-top:10px; font-size:20px;">Orders</p>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+<ion-list>
+  <ion-row *ngFor="let item of pendingClientOrders">
+    <ion-col>
+      <ion-card class="secondary-bg-color">
+        <ion-card-content>
+          <p class="fifth-text-color">{{item.Status.Name}}</p>
+          <ion-list>
+            <ion-row>
+              <ion-col class="fifth-text-color" col-6>Product</ion-col>
+              <ion-col class="fifth-text-color" col-6>Quantity</ion-col>
+            </ion-row>
+            <ion-row *ngFor="let order of item.OrderedItems">
+              <ion-col class="fifth-text-color" col-6>{{order.Item.Name}}</ion-col>
+              <ion-col class="fifth-text-color" col-6>{{order.Quantity}}</ion-col>
+            </ion-row>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-list>
+</ion-content>

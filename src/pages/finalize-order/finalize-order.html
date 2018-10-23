@@ -1,0 +1,49 @@
+
+<ion-header>
+  <ion-navbar hideBackButton="true">
+      <button ion-button clear icon-only class="float-left fifth-text-color" (click)="Close()">
+          <ion-icon name="md-close-circle"></ion-icon>
+      </button>
+      <button ion-button clear icon-only class="float-right fifth-text-color" (click)="Finalize()">
+          <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-list>
+    <ion-row>
+      <ion-col col-12>
+        <ion-card class="secondary-bg-color">
+          <ion-card-content *ngIf="!isLogin">
+            <ion-input type="text" placeholder="Firstname" style="width:100%; margin-bottom:5px;" class="background-color-transparent fifth-text-color border-line-1px-primary border-radius-10-px"></ion-input>
+            <ion-input type="text" placeholder="Lastname" style="width:100%; margin-bottom:5px;" class="background-color-transparent fifth-text-color border-line-1px-primary border-radius-10-px"></ion-input>
+            <ion-input type="text" placeholder="Middle Name" style="width:100%; margin-bottom:5px;" class="background-color-transparent fifth-text-color border-line-1px-primary border-radius-10-px"></ion-input>
+            <ion-input type="text" placeholder="Contact Number" style="width:100%; margin-bottom:5px;" class="background-color-transparent fifth-text-color border-line-1px-primary border-radius-10-px"></ion-input>
+            <ion-input type="text" placeholder="Email Address" style="width:100%; margin-bottom:5px;" class="background-color-transparent fifth-text-color border-line-1px-primary border-radius-10-px"></ion-input>
+            <ion-input type="password" placeholder="Password" style="width:100%; margin-bottom:5px;" class="background-color-transparent fifth-text-color border-line-1px-primary border-radius-10-px"></ion-input>
+          </ion-card-content>
+          <ion-card-content *ngIf="isLogin">
+            <p class="fifth-text-color font-size-20">{{userInfo.Firstname}} {{userInfo.Lastname}}</p>  
+            <p class="fifth-text-color font-size-20">{{userInfo.EmailAddress}}</p>            
+            <p class="fifth-text-color font-size-20">{{userInfo.ContactNumber}}</p>
+            <p class="fifth-text-color font-size-20">{{userInfo.Address}}</p>            
+          </ion-card-content>
+        </ion-card>
+        <ion-card class="secondary-bg-color">
+          <ion-card-content>
+              <agm-map [latitude]="mapView.lat" [longitude]="mapView.long" [zoom]="16" (mapClick)="MovePoint($event)" (centerChange)="TrackMovement($event)">
+                  <agm-marker [latitude]="myLocation.lat" [longitude]="myLocation.long">
+                    <agm-info-window [isOpen]="true">
+                      <strong style="color:#808080">is this the correct location?</strong>
+                    </agm-info-window>
+                  </agm-marker>
+              </agm-map>
+              <ion-textarea [(ngModel)]="addressAddons" class="border-line-1px-fifth fifth-text-color" maxLength="140" style="border-radius:5px;resize: none; margin-top:10px;" placeholder="Additional information about delivery location"></ion-textarea>
+              <ion-textarea [(ngModel)]="noteOrder" class="border-line-1px-fifth fifth-text-color" maxLength="140" style="border-radius:5px;resize: none; margin-top:5px;" placeholder="Delivery Note? Ex. Change for 1000"></ion-textarea>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-list>
+</ion-content>

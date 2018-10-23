@@ -1,0 +1,54 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button ion-button clear icon-only class="float-left fifth-text-color" (click)="Close()">
+            <ion-icon name="md-close-circle"></ion-icon>
+        </button>
+        <button ion-button clear icon-only class="float-right fifth-text-color" (click)="SaveOrders()">
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+        </button>
+        <button ion-button clear icon-only class="float-right fifth-text-color" (click)="ShowCart()">
+            <ion-icon name="md-cart"></ion-icon>
+        </button>
+        <p class="fifth-text-color float-right">Bill: {{totalBill}}</p>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-list>
+    <ion-row *ngFor="let item of items">
+      <ion-col>
+        <ion-card class="secondary-bg-color">
+              <ion-card-content>
+                  <p class="fifth-text-color text-align-left font-size-20">{{item.Item.Name}}</p>
+                  <p class="fifth-text-color text-align-left font-size-20">PHP {{item.Item.Price}}</p>
+                  <ion-list>
+                    <ion-row>
+                      <ion-col col-9>
+                          <ion-list>
+                            <ion-row>
+                              <ion-col col-5>
+                                <button ion-button clear (click)="ButtonAddClick(item)">
+                                  <ion-icon class="font-size-30 fifth-text-color" name="md-add"></ion-icon>
+                                </button>                                
+                              </ion-col>
+                              <ion-col col-3>
+                                <ion-input type="number" placeholder="Quantity" style="margin-bottom:5px;" [(ngModel)]="item.Quantity" class="fifth-text-color float-left"></ion-input>
+                              </ion-col>
+                              <ion-col col-4>
+                                <button ion-button clear (click)="ButtonSubClick(item)">
+                                  <ion-icon class="font-size-30 fifth-text-color" name="md-remove"></ion-icon>
+                                </button>
+                              </ion-col>
+                            </ion-row>
+                          </ion-list>
+                      </ion-col>
+                      <ion-col col-3>
+                          <img *ngIf="item.Item.ImageSource.length>0?true:false" style="border-radius:10px;" src="{{url}}{{item.Item.ImageSource[0].ImageSource}}" style="width:50px; height:50px;"/>
+                      </ion-col>
+                    </ion-row>
+                  </ion-list>
+              </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+</ion-content>

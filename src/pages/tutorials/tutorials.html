@@ -1,0 +1,60 @@
+<ion-header>
+    <button (click)="Close()" ion-button clear class="float-left">
+        <ion-icon class="fifth-text-color font-size-40" name="md-close-circle"></ion-icon>
+    </button>
+</ion-header>
+<ion-content padding class="secondary-bg-color">
+    <ion-slides *ngIf="!isEmployee">
+        <ion-slide>
+          <p class="fifth-text-color" style="font-size:30px;">Step 1 Create Account</p>
+          <button (click)="SignUpEvent()" ion-button class="secondary-bg-color" style="width:100%;">SIGN UP</button>
+          <p class="fifth-text-color clear text-align-center font-size-20"><ion-icon name="ios-arrow-dropleft-outline"></ion-icon>Swipe to Next Page</p>
+        </ion-slide>
+        <ion-slide>
+          <p class="fifth-text-color" style="font-size:30px;">Step 2 Enable Device</p>
+          <p class="fifth-text-color">Make sure to enable Internet Connection and Location on this phone so that you will be able to access the core feature of this app</p>
+          <p class="fifth-text-color clear text-align-center font-size-20"><ion-icon name="ios-arrow-dropleft-outline"></ion-icon>Swipe to Next Page</p>
+        </ion-slide>
+        <ion-slide>
+          <p class="fifth-text-color" style="font-size:30px;">How To Order?</p>
+          <ion-slides>
+            <ion-slide>
+              <img src="assets/imgs/Step1.png" style="width:100%; height:100%;"/>
+            </ion-slide>
+            <ion-slide>
+              <img src="assets/imgs/Step2.png" style="width:100%; height:100%;"/>
+            </ion-slide>
+            <ion-slide>
+              <img src="assets/imgs/Step3.png" style="width:100%; height:100%;"/>
+            </ion-slide>
+            <ion-slide>
+              <img src="assets/imgs/Step4.png" style="width:100%; height:100%;"/>
+            </ion-slide>
+          </ion-slides>
+        </ion-slide>
+    </ion-slides>
+
+    <ion-slides *ngIf="isEmployee" style="margin-top:0px !important">
+        <ion-slide>
+            <p class="fifth-text-color" style="font-size:30px;">Step 1 Setup Account</p>
+            <p class="fifth-text-color">Make sure your administrator has setup your account</p>
+            <p class="fifth-text-color clear text-align-center font-size-20"><ion-icon name="ios-arrow-dropleft-outline"></ion-icon>Swipe to Next Page</p>
+          </ion-slide>
+      <ion-slide>
+        <p class="fifth-text-color" style="font-size:30px;">Step 2 Enable Device</p>
+        <p class="fifth-text-color">Make sure to enable Internet Connection and Location on this phone so that you will be able to access the core feature of this app</p>
+        <p class="fifth-text-color clear text-align-center font-size-20"><ion-icon name="ios-arrow-dropleft-outline"></ion-icon>Swipe to Next Page</p>
+      </ion-slide>
+      <ion-slide>
+        <p class="fifth-text-color" style="font-size:30px;">How To Use?</p>
+        <ion-slides>
+          <ion-slide>
+            <img src="assets/imgs/logo.png" style="width:100%; height:100%;"/>
+          </ion-slide>
+          <ion-slide>
+            <img src="assets/imgs/logo.png" style="width:100%; height:100%;"/>
+          </ion-slide>
+        </ion-slides>
+      </ion-slide>
+    </ion-slides>
+</ion-content>

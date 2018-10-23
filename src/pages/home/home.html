@@ -1,0 +1,13 @@
+<ion-content padding style="background-image: url('assets/imgs/bg.jpg') !important; background-repeat:no-repeat; background-size:cover">
+    <img src="assets/imgs/logo.png" class="width-100-percent height-100-px margin-top-40-px"/>
+     <div class="margin-top-40-px">
+        <ion-input type="text" placeholder="Email Address" style="width:100%;" [(ngModel)]="userModel.EmailAddress" class="background-color-transparent fifth-text-color boder-line-bottom-1px-fifth"></ion-input>
+        <ion-input type="password" placeholder="Password" style="width:100%; " [(ngModel)]="userModel.Password" class="background-color-transparent fifth-text-color boder-line-bottom-1px-fifth margin-top-20-px"></ion-input>
+        <button *ngIf="!isEmployee" ion-button (click)="Login()" style="width:100%;" class="secondary-bg-color fifth-text-color margin-top-40-px">Login</button>
+     </div>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <button *ngIf="!isEmployee" ion-button (click)="SignUpOnClick()" style="width:100%;" class="fifth-text-color primary-bg-color">CREATE ACCOUNT</button>
+    </ion-toolbar>
+</ion-footer>

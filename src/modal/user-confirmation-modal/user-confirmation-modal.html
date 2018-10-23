@@ -1,0 +1,32 @@
+
+<ion-header>
+  <ion-navbar>
+      <button ion-button clear icon-only class="float-left fifth-text-color" (click)="NotDeliverRequest()">
+          <ion-icon name="md-close-circle"></ion-icon>
+      </button>
+  </ion-navbar>
+</ion-header>
+<ion-content class="tertiary-bg-color" padding>
+  <ion-card class="secondary-bg-color">
+      <ion-card-content>
+          <p class="fifth-text-color">From: {{clientInfo.DeliveryPerson.DeliveryMan.Firstname}}{{clientInfo.DeliveryPerson.DeliveryMan.Lastname}}</p>
+          <p class="fifth-text-color">Email: {{clientInfo.DeliveryPerson.DeliveryMan.EmailAddress}}</p>
+          <p class="fifth-text-color">Contact #: {{clientInfo.DeliveryPerson.DeliveryMan.ContactNumber}}</p>
+          <p class="fifth-text-color">To: {{clientInfo.Owner.Firstname}}{{clientInfo.Owner.Lastname}}</p>
+          <p class="fifth-text-color">Email: {{clientInfo.Owner.EmailAddress}}</p>
+          <p class="fifth-text-color">Contact #: {{clientInfo.Owner.ContactNumber}}</p>
+          <ion-list class="fifth-text-color">
+              <ion-row *ngFor="let order of clientInfo.OrderedItems">
+                  <ion-col col-4>{{order.Item.Name}}</ion-col>
+                  <ion-col col-4>{{order.Quantity}}</ion-col>
+                  <ion-col col-4>{{order.Quantity * order.Item.Price}}</ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col>
+                      <button (click)="DeliverRequest()" ion-button class="primary-bg-color">Mark as Delivered</button>
+                  </ion-col>
+              </ion-row>
+          </ion-list>
+      </ion-card-content>
+  </ion-card>
+</ion-content>

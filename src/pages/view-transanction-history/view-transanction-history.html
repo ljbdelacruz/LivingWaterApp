@@ -1,0 +1,33 @@
+
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button ion-button clear icon-only class="float-left fifth-text-color" (click)="Close()">
+            <ion-icon name="md-close-circle"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-row>
+            <ion-col col-12>
+                <ion-card class="secondary-bg-color" *ngFor="let trans of transactionHistory">
+                    <ion-card-content>
+                        <p class="fifth-text-color">Status: {{trans.Status.Name}}</p>
+                        <p class="fifth-text-color">Items: </p>
+                        <ion-list>
+                            <ion-row *ngFor="let item of trans.OrderedItems">
+                                <ion-col>
+                                    <button ion-item class="secondary-bg-color">
+                                        <p class="float-left fifth-text-color">{{item.Item.Name}}</p>
+                                        <p class="float-right fifth-text-color">{{item.Quantity}}</p>
+                                    </button>
+                                </ion-col>
+                            </ion-row>
+                        </ion-list>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-list>
+</ion-content>

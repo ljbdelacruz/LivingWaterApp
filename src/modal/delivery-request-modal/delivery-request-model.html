@@ -1,0 +1,52 @@
+
+<ion-header>
+  <ion-navbar>
+      <button ion-button clear icon-only class="float-left fifth-text-color" (click)="CancelRequest()">
+          <ion-icon name="md-close-circle"></ion-icon>
+      </button>
+      <button ion-button clear icon-only class="float-right fifth-text-color" (click)="AcceptRequest()">
+          <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+      </button>
+  </ion-navbar>
+</ion-header>
+<ion-content class="tertiary-bg-color" padding>
+  <ion-card class="secondary-bg-color">
+    <ion-card-title class="fifth-text-color">
+      <p class="fifth-text-color" style="text-align:center;">{{order.Owner.Firstname}} {{order.Owner.Lastname}}</p>
+    </ion-card-title>
+    <ion-card-content>
+      
+      <ion-list>
+        <ion-row *ngFor="let item of order.OrderedItems">
+          <ion-col col-4><p class="fifth-text-color">{{item.Item.Name}}</p></ion-col>
+          <ion-col col-4><p class="fifth-text-color">{{item.Quantity}}</p></ion-col>
+          <ion-col col-4><p class="fifth-text-color">{{item.Item.Price * item.Quantity}}</p></ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-8><p class="fifth-text-color">Total Bill:</p></ion-col>
+            <ion-col col-4><p class="fifth-text-color">{{bill}}</p></ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-12>
+                <p class="fifth-text-color">Note: {{order.Note}}</p>
+            </ion-col>
+            <ion-col col-12>
+              <p class="fifth-text-color">Address Info: {{order.AdditionalAddressInfo}}</p>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+              <agm-map [latitude]="order.Location.latitude" [longitude]="order.Location.longitude" [zoom]="16" (centerChange)="TrackMovement($event)">
+                  <agm-marker [latitude]="order.Location.latitude" [longitude]="order.Location.longitude">
+                      <agm-info-window [isOpen]="true">
+                        <p>Client Delivery Location</p>
+                      </agm-info-window>
+                  </agm-marker>
+              </agm-map>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

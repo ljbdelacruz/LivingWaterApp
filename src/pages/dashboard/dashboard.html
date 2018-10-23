@@ -1,0 +1,81 @@
+
+<ion-menu [content]="mycontent" class="primary-bg-color" side="left" type="overlay">
+    <ion-content class="primary-bg-color">
+            <ion-list>
+                <ion-row class="margin-top-10-px">
+                    <ion-col col-9>  
+                        <span class="text-align-center fifth-text-color font-size-15 margin-left-20">LIVINGWATER SYSTEM INC</span>
+                    </ion-col>
+                    <ion-col col-3>
+                        <button ion-button clear (click)="ToggleMenu()">
+                            <ion-icon class="font-size-40 fifth-text-color float-right" name="menu"></ion-icon>
+                        </button>
+                    </ion-col>
+                </ion-row>
+            </ion-list>
+            <ion-list class="margin-top-40-px" class="primary-bg-color">
+                    <button ion-item no-lines (click)="GotoMyLocation()" class="fifth-text-color primary-bg-color">
+                        <ion-icon class="fifth-text-color" name="md-locate" style="zoom:1;"></ion-icon> Go to My Location
+                    </button>
+                    <button  (click)="GotoFacebookPage()" ion-item no-lines class="fifth-text-color primary-bg-color">
+                        <ion-icon class="fifth-text-color" name="logo-facebook" style="zoom:1;"></ion-icon> Facebook Page
+                    </button>
+                    <button *ngIf="isLogin" ion-item no-lines class="fifth-text-color primary-bg-color" (click)="ViewTransactionHistory()">
+                            <ion-icon class="fifth-text-color" name="ios-book-outline" style="zoom:1;"></ion-icon> Transaction History
+                    </button>
+                    <button *ngIf="isLogin" ion-item no-lines class="fifth-text-color primary-bg-color" (click)="ViewUserOrders()">
+                            <ion-icon class="fifth-text-color" name="ios-list-outline" style="zoom:1;"></ion-icon> My Orders
+                    </button>
+                    <button ion-item no-lines (click)="Logout()" class="fifth-text-color primary-bg-color">
+                        <ion-icon class="fifth-text-color" name="md-arrow-round-back" style="zoom:1;"></ion-icon> Logout
+                    </button>
+                </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-header>
+  <ion-navbar hideBackButton="true">
+      <button ion-button clear icon-only class="float-left fifth-text-color" (click)="ToggleMenu()">
+          <ion-icon class="font-size-30" name="menu"></ion-icon>
+      </button>
+      <button ion-button clear icon-only class="float-right fifth-text-color" (click)="ShopOnClick()">
+        <ion-icon class="font-size-30" name="md-cart"></ion-icon>
+      </button>
+      <button ion-button clear icon-only class="float-right fifth-text-color" (click)="ViewOrdersOnClick()">
+        <ion-icon class="font-size-30" name="md-pricetag"></ion-icon>
+      </button>
+      <!-- <button (click)="ShowPopover($event)" ion-button clear icon-only class="float-right fifth-text-color">
+          <ion-icon class="font-size-20" name="md-more"></ion-icon>
+      </button> -->
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding #mycontent>
+    <input placeholder="Location Search" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+    <agm-map *ngIf="isActivePage" [latitude]="mapView.lat" [longitude]="mapView.long" [zoom]="16" (mapClick)="MovePoint($event)" (centerChange)="TrackMovement($event)">
+        <agm-marker [latitude]="myLocation.lat" [longitude]="myLocation.long">
+          <agm-info-window [isOpen]="true">
+            <strong style="color:#808080">Delivery Location?</strong>
+          </agm-info-window>
+        </agm-marker>
+        <agm-marker [latitude]="currentUserlocation.latitude" [longitude]="currentUserlocation.longitude">
+            <agm-info-window [isOpen]="true">
+                <strong style="color:#808080">My Location</strong>
+            </agm-info-window>
+        </agm-marker>
+        <agm-marker class="color:blue !important;" *ngFor="let item of acceptedLocation" [latitude]="item.location.latitude" [longitude]="item.location.longitude" iconUrl="assets/icon/truck.svg">
+            <agm-info-window [isOpen]="false">
+                <strong style="color:#808080">Delivery Guy</strong>
+                <ion-list>
+                    <ion-row></ion-row>
+                </ion-list>
+            </agm-info-window>
+        </agm-marker>
+    </agm-map>
+    <ion-fab left bottom>
+        <button ion-fab class="secondary-bg-color"><ion-icon class="fifth-text-color" name="md-share"></ion-icon></button>
+        <ion-fab-list side="top">
+          <button (click)="fbNavigate()" ion-fab class="secondary-bg-color"><ion-icon class="fifth-text-color" name="logo-facebook"></ion-icon></button>
+        </ion-fab-list>
+    </ion-fab>
+</ion-content>

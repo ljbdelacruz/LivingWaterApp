@@ -1,0 +1,13 @@
+page-signup {
+    .text-input::-moz-placeholder {
+        color: #7f7f7f;
+      }
+      
+      .text-input:-ms-input-placeholder {
+        color: #7f7f7f;
+      }
+      
+      .text-input::-webkit-input-placeholder {
+        color: #7f7f7f;
+      }
+}
